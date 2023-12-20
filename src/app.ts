@@ -7,6 +7,8 @@ import cors from 'cors';
 import express, { Application, NextFunction, Request, Response, Router } from 'express';
 import { UserRoutes } from './app/modules/user/user.route';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import notFound from './app/middlewares/notFound';
+import router from './app/routes';
 // import globalErrorHandler from './app/middlewares/globalErrorhandler';
 // import notFound from './app/middlewares/notFound';
 
@@ -19,7 +21,7 @@ app.use(cookieParser());
 app.use(cors());
 
 // application routes
-app.use('/api/v1/users',UserRoutes);
+app.use('/api/v1',router);
 // const test = async (req: Request, res: Response) => {
 //   const a = 10;
 //   res.send(a);
@@ -42,6 +44,6 @@ app.use('/api/v1/users',UserRoutes);
 
 
 // //Not Found
-// app.use(notFound);
+app.use(notFound);
 
 export default app;
